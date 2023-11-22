@@ -1,9 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:project/byblos.dart';
 import 'baalbek.dart';
 import 'jeita.dart';
 import 'batroun.dart';
 import 'jounieh.dart';
-class ExplorePage extends StatelessWidget {
+import 'anjar.dart';
+import 'bcharre.dart';
+import 'saida.dart';
+import 'tyre.dart';
+
+class ExplorePage extends StatefulWidget {
+  @override
+  _ExplorePageState createState() => _ExplorePageState();
+}
+
+class _ExplorePageState extends State<ExplorePage> {
+  List<Map<String, String>> places = [
+    {"imagePath": 'assets/Baalbek1.jpg', "title": 'Baalbek'},
+    {"imagePath": 'assets/jaaeta1.jpg', "title": 'Jeita Grotto'},
+    {"imagePath": 'assets/batroun1.jpg', "title": 'Batroun'},
+    {"imagePath": 'assets/jounieh1.jpg', "title": 'Jounieh'},
+    {"imagePath": 'assets/byblos1.jpg', "title": 'Byblos'},
+    {"imagePath": 'assets/anjar1.jpg', "title": 'Anjar'},
+    {"imagePath": 'assets/bcharre1.jpg', "title": 'Bcharre'},
+    {"imagePath": 'assets/saida1.jpg', "title": 'Saida'},
+    {"imagePath": 'assets/tyre1.jpg', "title": 'Tyre'},
+  ];
+
+  List<Map<String, String>> filteredPlaces = [];
+
+  @override
+  void initState() {
+    filteredPlaces = List.from(places);
+    super.initState();
+  }
+
+  void _filterPlaces(String query) {
+    setState(() {
+      filteredPlaces = places
+          .where((place) =>
+          place["title"]!.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,9 +55,24 @@ class ExplorePage extends StatelessWidget {
             'assets/elrawche1.jpg', // Replace with your image path
             fit: BoxFit.cover,
           ),
+          // Positioned for Search Bar
+          Positioned(
+            top: 30.0,
+            left: 20.0,
+            right: 20.0,
+            child: TextField(
+              onChanged: _filterPlaces,
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                hintText: 'Search',
+                hintStyle: TextStyle(color: Colors.white),
+                prefixIcon: Icon(Icons.search, color: Colors.white),
+              ),
+            ),
+          ),
           // Positioned for Places
           Positioned(
-            top: 70.0,
+            top: 85.0,
             left: 20.0,
             child: Text(
               'Places',
@@ -30,7 +85,7 @@ class ExplorePage extends StatelessWidget {
           ),
           // Positioned for Popular
           Positioned(
-            top: 93.0,
+            top: 106.0,
             left: 20.0,
             child: Text(
               'Popular',
@@ -41,173 +96,128 @@ class ExplorePage extends StatelessWidget {
               ),
             ),
           ),
-          // First Rounded Image with "hi"
+          // List of Images
           Positioned(
             top: 145.0,
             left: 20.0,
             right: 20.0,
-            child: GestureDetector(
-              onTap: () {
-                // Handle the tap on the first image (Baalbek)
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BaalbekPage()),
-                );
-              },
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15.0),
-                    child: Image.asset(
-                      'assets/Baalbek1.jpg', // Replace with your image path
-                      width: 370.0, // Increase the width
-                      height: 150.0, // Increase the height
-                      fit: BoxFit.cover,
-                    ),
+            bottom: 0.0,
+            child: ListView(
+              scrollDirection: Axis.vertical,
+              children: [
+                for (var place in filteredPlaces)
+                  buildImageCard(
+                    imagePath: place['imagePath']!,
+                    title: place['title']!,
+                    onTap: () {
+                      // Find the original place
+                      var originalPlace = places.firstWhere(
+                            (original) => original['title'] == place['title'],
+                      );
+                      // Open corresponding page
+                      openCorrespondingPage(originalPlace);
+                    },
                   ),
-                  Positioned(
-                    top: 9,
-                    left: 12,
-                    child: Text(
-                      'Baalbek',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          // Second Rounded Image with "hi"
-          Positioned(
-            top: 325.0,
-            left: 20.0,
-            right: 20.0,
-            child: GestureDetector(
-              onTap: () {
-                // Handle the tap on the second image (Jeita Grotto)
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => JeitaGrottoPage()),
-                );
-              },
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15.0),
-                    child: Image.asset(
-                      'assets/jaaeta1.jpg', // Replace with your image path
-                      width: 370.0, // Increase the width
-                      height: 150.0, // Increase the height
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Positioned(
-                    top: 9,
-                    left: 12,
-                    child: Text(
-                      'Jeita Grotto',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          // Third Rounded Image with "hi"
-          Positioned(
-            top: 505.0,
-            left: 20.0,
-            right: 20.0,
-            child: GestureDetector(
-              onTap: () {
-                // Handle the tap on the third image (Batroun)
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BatrounPage()),
-                );
-              },
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15.0),
-                    child: Image.asset(
-                      'assets/batroun1.jpg', // Replace with your image path
-                      width: 370.0, // Increase the width
-                      height: 150.0, // Increase the height
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Positioned(
-                    top: 9,
-                    left: 12,
-                    child: Text(
-                      'Batroun',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          // Fourth Rounded Image with "hi"
-          Positioned(
-            top: 685.0,
-            left: 20.0,
-            right: 20.0,
-            child: GestureDetector(
-              onTap: () {
-                // Handle the tap on the fourth image (Jounieh)
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => JouniehPage()),
-                );
-              },
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15.0),
-                    child: Image.asset(
-                      'assets/jounieh1.jpg', // Replace with your image path
-                      width: 370.0, // Increase the width
-                      height: 150.0, // Increase the height
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Positioned(
-                    top: 9,
-                    left: 12,
-                    child: Text(
-                      'Jounieh',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              ],
             ),
           ),
         ],
       ),
     );
   }
+
+  void openCorrespondingPage(Map<String, String> place) {
+    switch (place['title']) {
+      case 'Baalbek':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BaalbekPage()),
+        );
+        break;
+      case 'Jeita Grotto':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => JeitaGrottoPage()),
+        );
+        break;
+      case 'Batroun':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BatrounPage()),
+        );
+        break;
+      case 'Jounieh':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => JouniehPage()),
+        );
+        break;
+      case 'Byblos':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ByblosPage()),
+        );
+        break;
+      case 'Anjar':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AnjarPage()),
+        );
+        break;
+      case 'Bcharre':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BcharrePage()),
+        );
+        break;
+      case 'Saida':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SidaPage()),
+        );
+        break;
+      case 'Tyre':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => TyrePage()),
+        );
+        break;
+    // Add cases for other places as needed
+    }
+  }
+
+  Widget buildImageCard(
+      {required String imagePath, required String title, required VoidCallback onTap}) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10.0),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Stack(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15.0),
+              child: Image.asset(
+                imagePath,
+                width: 370.0,
+                height: 150.0,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Positioned(
+              top: 9,
+              left: 12,
+              child: Text(
+                title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 19.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
-
-
-
-
-
