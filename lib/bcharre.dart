@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class BatrounPage extends StatelessWidget {
+class BcharrePage extends StatelessWidget {
   final List<String> smallImages = [
-    'assets/batroun2.jpg',
-    'assets/batroun3.jpg',
-    'assets/batroun4.jpg',
-    'assets/batroun5.jpg',
+    'assets/bcharre2.jpg',
+    'assets/bcharre3.jpg',
+    'assets/bcharre4.jpg',
+    'assets/bcharre5.jpg',
 
   ];
 
@@ -21,7 +21,7 @@ class BatrounPage extends StatelessWidget {
             right: 0.0,
             child: ClipRRect(
               child: Image.asset(
-                'assets/batroun1.jpg',
+                'assets/bcharre1.jpg',
                 width: 370.0,
                 height: 300.0,
                 fit: BoxFit.cover,
@@ -33,7 +33,7 @@ class BatrounPage extends StatelessWidget {
             top: 320.0,
             left: 20.0,
             child: Text(
-              'Batroun',
+              'Bcharre',
               style: TextStyle(
                 fontSize: 27.0,
                 fontWeight: FontWeight.w400,
@@ -47,7 +47,7 @@ class BatrounPage extends StatelessWidget {
             child: Container(
               width: 370.0,
               child: Text(
-                'Batroun, a charming coastal town in Lebanon, captivates with its rich history and vibrant atmosphere. Known for its ancient Phoenician wall, traditional souks, and lively waterfront, Batroun offers a delightful blend of culture, relaxation, and culinary delights. Visitors can explore historical sites, unwind on sandy beaches, and savor the town is distinctive character, making it a must-visit destination along the Lebanese coastline.',
+                'Bcharre, located in the mountainous region of northern Lebanon, is a picturesque town renowned for its natural beauty, historical significance, and cultural heritage. Nestled in the Qadisha Valley, a UNESCO World Heritage site, Bcharre is surrounded by rugged landscapes, steep cliffs, and dense cedar forests.',
                 style: TextStyle(
                   fontSize: 21.0,
                   color: Colors.black38,

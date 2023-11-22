@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-class BatrounPage extends StatelessWidget {
+class AnjarPage extends StatelessWidget {
   final List<String> smallImages = [
-    'assets/batroun2.jpg',
-    'assets/batroun3.jpg',
-    'assets/batroun4.jpg',
-    'assets/batroun5.jpg',
-
+    'assets/anjar2.jpg',
+    'assets/anjar3.jpg',
+    'assets/anjar4.jpg',
+    'assets/anjar5.jpg',
   ];
 
   @override
@@ -21,7 +20,7 @@ class BatrounPage extends StatelessWidget {
             right: 0.0,
             child: ClipRRect(
               child: Image.asset(
-                'assets/batroun1.jpg',
+                'assets/anjar1.jpg',
                 width: 370.0,
                 height: 300.0,
                 fit: BoxFit.cover,
@@ -33,7 +32,7 @@ class BatrounPage extends StatelessWidget {
             top: 320.0,
             left: 20.0,
             child: Text(
-              'Batroun',
+              'Anjar',
               style: TextStyle(
                 fontSize: 27.0,
                 fontWeight: FontWeight.w400,
@@ -47,7 +46,7 @@ class BatrounPage extends StatelessWidget {
             child: Container(
               width: 370.0,
               child: Text(
-                'Batroun, a charming coastal town in Lebanon, captivates with its rich history and vibrant atmosphere. Known for its ancient Phoenician wall, traditional souks, and lively waterfront, Batroun offers a delightful blend of culture, relaxation, and culinary delights. Visitors can explore historical sites, unwind on sandy beaches, and savor the town is distinctive character, making it a must-visit destination along the Lebanese coastline.',
+                'Anjar Castle, located in the historical town of Anjar in Lebanon, is a well-preserved Umayyad-era fortress that dates back to the early 8th century. Constructed during the reign of Caliph Walid I, the castle is an architectural marvel, showcasing a blend of Roman and Islamic influences. Its strategic location along ancient trade routes facilitated control over the Bekaa Valley.',
                 style: TextStyle(
                   fontSize: 21.0,
                   color: Colors.black38,
