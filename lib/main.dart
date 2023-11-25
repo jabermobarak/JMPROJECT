@@ -1,4 +1,3 @@
-//heell00000
 import 'package:flutter/material.dart';
 import 'explore.dart'; // Import the explore.dart file
 
